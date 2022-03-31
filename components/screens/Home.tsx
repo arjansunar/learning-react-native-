@@ -25,6 +25,7 @@ const Home = ({navigation}: Props) => {
       <View style={styles.buttonWrapper}>
         <RouteButton title="Modal" screenName="Modal" navigation={navigation} />
         <RouteButton title="Todo" screenName="Todo" navigation={navigation} />
+        <RouteButton title="Posts" screenName="Posts" navigation={navigation} />
       </View>
     </View>
   );
