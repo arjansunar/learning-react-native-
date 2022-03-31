@@ -1,8 +1,8 @@
-import {View, Text, Button} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import {View, Text, Button, FlatList, StyleSheet} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {NavigationStackProp} from 'react-navigation-stack';
 import {postApi} from '../../api';
-import {FlatList} from 'react-native-gesture-handler';
 type Props = {navigation: NavigationStackProp};
 type Post = {
   id: number;
@@ -20,32 +20,63 @@ const Posts = ({navigation}: Props) => {
       if (mounted) {
         setLoading(false);
       }
-      setPosts(res.data);
+      setPosts(res.data.filter((_, i) => i < 20));
     });
     return () => {
       mounted = false;
     };
   }, []);
-  //   console.log(posts);
-
+  const FooterButton = () => (
+    <Button title="Home" onPress={() => navigation.push('Home')} />
+  );
+  const HeaderText = () => (
+    <Text style={{fontSize: 35, textAlign: 'center', marginBottom: 10}}>
+      Making api requests
+    </Text>
+  );
   return (
-    <View>
-      <Text>Posts</Text>
+    <View style={{}}>
       {!loading ? (
         <FlatList
+          ListHeaderComponent={HeaderText}
+          style={styles.posts}
           data={posts}
           renderItem={({item}) => {
-            return <Text>{item.title}</Text>;
+            return <Post title={item.title.trim()} body={item.body.trim()} />;
           }}
-          keyExtractor={item => item.id + ''}
+          keyExtractor={item => 'key' + item.id}
+          ListFooterComponent={FooterButton}
+          ListFooterComponentStyle={{marginBottom: 20}}
         />
       ) : (
         <Text>Loading..</Text>
       )}
-
-      <Button title="Home" onPress={() => navigation.push('Home')} />
+    </View>
+  );
+};
+const Post = ({title, body}: Partial<Post>) => {
+  return (
+    <View style={styles.post}>
+      <Text style={styles.itemTitle}>{title}</Text>
+      <Text> {body}</Text>
     </View>
   );
 };
 
+const styles = StyleSheet.create({
+  posts: {
+    padding: 10,
+  },
+  post: {
+    padding: 10,
+    backgroundColor: '#ffffff',
+    marginBottom: 10,
+  },
+  itemTitle: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    marginBottom: 8,
+    textAlign: 'left',
+  },
+});
 export default Posts;
