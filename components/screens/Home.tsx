@@ -19,7 +19,7 @@ const RouteButton = ({
   </View>
 );
 
-const Home = ({navigation}: Props) => {
+export const Home = ({navigation}: Props) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.buttonWrapper}>
@@ -45,4 +45,3 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
-export default Home;

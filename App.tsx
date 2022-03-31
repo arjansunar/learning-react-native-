@@ -1,13 +1,10 @@
 import React from 'react';
-// import {StyleSheet, View} from 'react-native';
-// import {LImage} from './components';
-// import {LList} from './components/LList';
 import {LModal} from './components/screens/LModal';
 import Todo from './components/screens/Todo';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from './components/screens/Home';
-import Posts from './components/screens/Posts';
+import {Home} from './components/screens';
+import {Posts} from './components/screens';
 
 const Stack = createNativeStackNavigator();
 

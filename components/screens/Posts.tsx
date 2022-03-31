@@ -11,7 +11,7 @@ type Post = {
   title: string;
 };
 
-const Posts = ({navigation}: Props) => {
+export const Posts = ({navigation}: Props) => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
@@ -79,4 +79,3 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
 });
-export default Posts;
