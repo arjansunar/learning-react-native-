@@ -6,7 +6,7 @@ import {
   Image,
   ActivityIndicator,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {NavigationStackProp} from 'react-navigation-stack';
 import {Result} from '../../api/types';
 import {randomPersonApi} from '../../api';
@@ -19,7 +19,7 @@ const InfiniteScroll = ({}: Props) => {
   const [userData, setData] = useState<Result[]>([]);
   const [page, setPage] = useState<number>(0);
   const [loading, setLoading] = useState(true);
-
+  console.log('rerender');
   useEffect(() => {
     let mounted = true;
     setLoading(true);
@@ -38,6 +38,9 @@ const InfiniteScroll = ({}: Props) => {
     };
   }, [page]);
 
+  if (!userData) {
+    return <ActivityIndicator animating size={'large'} />;
+  }
   return (
     <View style={styles.wrapper}>
       <FlatList
@@ -56,14 +59,19 @@ const InfiniteScroll = ({}: Props) => {
         }}
         ListFooterComponentStyle={styles.footer}
         keyExtractor={(_, i) => 'key' + i}
-        onEndReached={({distanceFromEnd}) => {
-          console.log('end', distanceFromEnd);
+        onEndReached={() => {
           setPage(val => val + 1);
         }}
         onEndReachedThreshold={0.1}
+        ListHeaderComponent={memo(HeaderComponent)}
       />
     </View>
   );
+};
+
+const HeaderComponent = () => {
+  console.log('header render');
+  return <Text>Header</Text>;
 };
 type UserCard = {
   name: string;
