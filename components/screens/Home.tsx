@@ -26,6 +26,11 @@ export const Home = ({navigation}: Props) => {
         <RouteButton title="Modal" screenName="Modal" navigation={navigation} />
         <RouteButton title="Todo" screenName="Todo" navigation={navigation} />
         <RouteButton title="Posts" screenName="Posts" navigation={navigation} />
+        <RouteButton
+          title="Infinite Scroll"
+          screenName="Scroll"
+          navigation={navigation}
+        />
       </View>
     </View>
   );

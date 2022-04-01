@@ -1,6 +1,4 @@
-import axios from 'axios';
+import {instance} from './create-axios-instance';
 const APP_URL = 'https://jsonplaceholder.typicode.com/';
 
-export const postApi = axios.create({
-  baseURL: `${APP_URL}`,
-});
+export const postApi = instance(APP_URL);

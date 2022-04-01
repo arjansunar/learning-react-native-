@@ -10,6 +10,11 @@ type Post = {
   body: string;
   title: string;
 };
+export const FooterButton = ({
+  navigation,
+}: {
+  navigation: NavigationStackProp;
+}) => <Button title="Home" onPress={() => navigation.push('Home')} />;
 
 export const Posts = ({navigation}: Props) => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -26,9 +31,7 @@ export const Posts = ({navigation}: Props) => {
       mounted = false;
     };
   }, []);
-  const FooterButton = () => (
-    <Button title="Home" onPress={() => navigation.push('Home')} />
-  );
+
   const HeaderText = () => (
     <Text style={{fontSize: 35, textAlign: 'center', marginBottom: 10}}>
       Making api requests
@@ -45,7 +48,7 @@ export const Posts = ({navigation}: Props) => {
             return <Post title={item.title.trim()} body={item.body.trim()} />;
           }}
           keyExtractor={item => 'key' + item.id}
-          ListFooterComponent={FooterButton}
+          ListFooterComponent={FooterButton({navigation})}
           ListFooterComponentStyle={{marginBottom: 20}}
         />
       ) : (

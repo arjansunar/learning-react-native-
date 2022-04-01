@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Home} from './components/screens';
 import {Posts} from './components/screens';
+import InfiniteScroll from './components/screens/InfiniteScroll';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ const App = () => {
         <Stack.Screen name="Todo" component={Todo} />
         <Stack.Screen name="Modal" component={LModal} />
         <Stack.Screen name="Posts" component={Posts} />
+        <Stack.Screen name="Scroll" component={InfiniteScroll} />
       </Stack.Navigator>
     </NavigationContainer>
   );
