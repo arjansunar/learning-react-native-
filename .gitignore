@@ -59,9 +59,3 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
-
-# ios folder
-ios
-
-# android folder
-android 
