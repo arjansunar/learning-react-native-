@@ -38,7 +38,7 @@ const Todo = ({navigation}: Prop) => {
 
   return (
     <View style={styles.wrapper}>
-      <Text>Todo</Text>
+      <Text>Todos</Text>
       <View style={styles.addTodo}>
         <View style={styles.flexRow}>
           <TextInput
